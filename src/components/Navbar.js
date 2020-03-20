@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 //css needed
 
 const Navbar = ({items, isExpanded, currentSection}) => {

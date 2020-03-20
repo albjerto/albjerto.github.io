@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import proPic from '../media/download.png'
 //css needed
 
