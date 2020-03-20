@@ -7,8 +7,9 @@ const Navbar = ({items, isExpanded, currentSection}) => {
         return(
             <a
                 key={item.name} 
-                
-                className={"navbar-item navbar-item-dimensions clickable " + ( item.name === currentSection ? "navbar-item-selected" : "" )}>{item.name}</a>
+                className={"navbar-item navbar-item-dimensions clickable " + ( item.name === currentSection ? "navbar-item-selected" : "" )}>
+                    {item.name}
+            </a>
         )
     });
 
