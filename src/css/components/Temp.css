@@ -1,0 +1,115 @@
+nav {
+    transition: .3s ease-in;
+    width: 100%;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+/* desktop-x-small */
+@media all and (min-width: 0) and (max-width: 480px) {
+
+}
+
+/* desktop-small */
+@media all and (min-width: 481px) and (max-width: 840px) {
+
+}
+
+/* desktop-medium */
+@media all and (min-width: 841px) {
+    .navbar-dimensions {
+        height: 88px;
+        width: 100%;
+    }
+
+    .navbar-item-dimensions {
+        margin: 8px;
+        padding: 16px;
+    }
+
+    .navbar-logo {
+        margin: 20px;
+        padding: 16px;
+    
+        font-size: 18px;
+    
+        color: #333;
+        border: 2px dashed #f69c55;
+    }
+}
+
+.navbar {
+    position: fixed;
+
+    z-index: 100;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center; /* align horizontal */
+    -ms-flex-align: center;
+    align-items: center; /* align vertical */
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    line-height: 1em;
+    color: #333;
+
+    -webkit-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+
+.expanded {
+    background-color: white;
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.10);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.10);
+}
+
+nav.expanded a {
+    color: black;
+}
+
+.navbar-item {
+    border-radius: 4px;
+
+    -webkit-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+
+.navbar-item:hover, .navbar-logo:hover {
+    -webkit-transition: all 200ms ease-in;
+    -o-transition: all 200ms ease-in;
+    transition: all 200ms ease-in;
+
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.navbar-item-selected {
+    border-radius: 4px;
+
+    -webkit-animation: navbar-item-background-change 10000ms infinite;
+    animation: navbar-item-background-change 10000ms infinite;
+}
+
+@-webkit-keyframes navbar-item-background-change {
+    0% { background-color: rgba(33, 150, 243, 0.2); }
+    25% { background-color: rgba(76, 175, 80, 0.2); }
+    50% { background-color: rgba(255, 193, 7, 0.2); }
+    75% { background-color: rgba(255, 87, 34, 0.2); }
+    100% { background-color: rgba(33, 150, 243, 0.2); }
+}
+
+@keyframes navbar-item-background-change {
+    0% { background-color: rgba(33, 150, 243, 0.2); }
+    25% { background-color: rgba(76, 175, 80, 0.2); }
+    50% { background-color: rgba(255, 193, 7, 0.2); }
+    75% { background-color: rgba(255, 87, 34, 0.2); }
+    100% { background-color: rgba(33, 150, 243, 0.2); }
+}

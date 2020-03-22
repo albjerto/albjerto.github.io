@@ -1,0 +1,59 @@
+div.header-container {
+    min-height: 100vh;
+    background-image: linear-gradient(135deg, #080038, #3a003a);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+}
+
+div.welcome {
+    margin-left: 5%;
+}
+
+h1.welcome-title {
+    font-weight: lighter;
+    font-size: 25px;
+}
+
+
+p.welcome-info {
+    font-size: 15px;
+}
+
+@media all and (min-width: 841px) {
+    h1.welcome-title {
+        font-size: 45px;
+    }
+    
+    p.welcome-info {
+        font-size: 25px;
+    }
+}
+
+span.space {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+span.letter {
+    margin-left: 5px;
+    color: inherit;
+    display: inline-block;
+    -webkit-transition:all .2s ease-out;
+    -moz-transition:all .2s ease-out;
+    -ms-transition:all .2s ease-out;
+    -o-transition:all .2s ease-out;
+    transition:all .2s ease-out;
+}
+
+
+span.letter:hover {
+    color: #21ebff;
+    text-shadow: 0 0 20px #21ebff;
+    -webkit-transform:rotate(15deg) scale(1.3);
+    -moz-transform:rotate(15deg) scale(1.3);
+    -ms-transform:rotate(15deg) scale(1.3);
+    -o-transform:rotate(15deg) scale(1.3);
+    transform:rotate(15deg) scale(1.3);
+}

@@ -1,0 +1,88 @@
+div.overlay { 
+    height: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    background-color: rgba(5, 0, 31, 0.9);
+    overflow: hidden; 
+    transition: 0.2s ease-in;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.overlay nav a {
+    display: block;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
+    transition: .2s ease-in;
+}
+
+@media all and (min-width: 841px) {
+    div.overlay nav a {
+        padding: 30px 100px;
+    }
+}
+
+div.overlay nav a.active, div.overlay nav a:hover {
+    /*color: #255784;
+    background-color: #2196f3;
+    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;*/
+    color: #21ebff;
+    text-shadow: 0 0 10px #21ebff, 0 0 40px #21ebff, 0 0 80px #21ebff;
+}
+
+div.overlay.expanded {
+    height: 100%;
+}
+
+div.burger-button {
+    z-index: 1000;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    min-height: 30px;
+}
+
+.burger-button span {
+    display: block;
+    width: 42px;
+    height: 2px;
+    margin: 8px;
+    background-color: #7a7a7a;
+    transition: .1s ease-in;
+}
+
+div.burger-button:hover {
+    cursor: pointer;
+}
+
+/*burger animations*/
+@media all and (min-width:1025px) {
+
+    div.burger-button:hover span:nth-child(1), div.burger-button:hover span:nth-child(3) {
+        margin-left: -2px;
+    }
+    
+    div.burger-button:hover span:nth-child(2) {
+        margin-right: -2px;
+    }
+}
+
+div.burger-button.expanded span:nth-child(2){
+    opacity: 0;
+}
+
+div.burger-button.expanded span:nth-child(1) {
+    transform: translateY(20px) rotate(45deg);
+}
+
+div.burger-button.expanded span:nth-child(3) {
+    transform: rotate(-45deg);
+}

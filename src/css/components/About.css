@@ -1,0 +1,10 @@
+img.propic {
+    height: 300px;
+    border-radius: 50%;
+    display: none;
+}
+
+div.about-container {
+    padding-top: 30px;
+    min-height: 100vh;
+}
