@@ -1,14 +1,60 @@
 div.header-container {
     min-height: 100vh;
-    background-image: linear-gradient(135deg, #080038, #3a003a);
+    /*background-image: linear-gradient(135deg, #080038, #3a003a);*/
+    /*background-image: linear-gradient(135deg, #0c0052, #05001a);*/
     display: flex;
     align-items: center;
     justify-content: flex-start;
     color: white;
+    background: linear-gradient(to left, #0d071e 0%, rgba(34,14,93,0.25) 50%);
+    /*background-color: #18044e;*/
+    background-color: #152238;
+    width: 100%;
+    z-index : 10;
 }
+/*
+div.logo-svg {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 2;
+}
+
+svg {
+    max-height: 300px;
+}
+
+path {
+    fill: #ffffff;
+    fill-opacity: 0;
+    stroke-width: 1px;
+    stroke: rgb(0, 143, 199);
+    animation: fill-in 2s linear forwards;
+}
+
+@keyframes fill-in {
+    100% {
+        fill-opacity: 100%;
+    }
+}
+
+path.dashed {
+    stroke-dasharray: 250;
+    stroke-dashoffset: 250;
+    animation: draw 2s linear forwards;
+}  
+
+@keyframes draw {
+    to {
+        stroke-dashoffset: 0; 
+    }
+}
+*/
 
 div.welcome {
     margin-left: 5%;
+    z-index: 1;
+    position: absolute;
 }
 
 h1.welcome-title {
@@ -31,29 +77,10 @@ p.welcome-info {
     }
 }
 
-span.space {
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-span.letter {
-    margin-left: 5px;
-    color: inherit;
-    display: inline-block;
-    -webkit-transition:all .2s ease-out;
-    -moz-transition:all .2s ease-out;
-    -ms-transition:all .2s ease-out;
-    -o-transition:all .2s ease-out;
-    transition:all .2s ease-out;
-}
-
-
-span.letter:hover {
-    color: #21ebff;
-    text-shadow: 0 0 20px #21ebff;
-    -webkit-transform:rotate(15deg) scale(1.3);
-    -moz-transform:rotate(15deg) scale(1.3);
-    -ms-transform:rotate(15deg) scale(1.3);
-    -o-transform:rotate(15deg) scale(1.3);
-    transform:rotate(15deg) scale(1.3);
+canvas {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
 }

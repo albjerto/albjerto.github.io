@@ -1,10 +1,48 @@
 img.propic {
-    height: 300px;
-    border-radius: 50%;
-    display: none;
+    display:none;
+}
+
+@media all and (min-width: 841px) {
+    img.propic {
+        display: block;
+        height: 250px;
+        border-radius: 50%;
+        margin-right: 35px;
+        border-color: #21ebff;
+        border-width: 2px;
+    }
 }
 
 div.about-container {
-    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
+    color: white;
+    line-height: 1.5rem;
+    background: linear-gradient(to left, #0d071e 0%, rgba(34,14,93,0.25) 50%);
+    background-color: #152238;
+}
+
+div.about-box {
+    position:absolute;
+    left: 0;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (min-width: 841px) {
+    div.about-box {
+        padding-left: 15%;
+        padding-right: 15%;
+        position: relative;
+        margin-left: auto;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+
+span.heavier {
+    font-weight: bold;
 }

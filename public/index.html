@@ -25,10 +25,31 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Alberto Jesu</title>
+    <title>Alberto Jesu</title> 
   </head>
   <body>
     <noscript>Alberto Jesu's personal portfolio website. In order to run this app correctly, you need to enable JavaScript.</noscript>
+    <script type="x-shader/x-vertex" id="wrapVertexShader">
+      attribute float size;
+      attribute vec3 color;
+      varying vec3 vColor;
+      void main() {
+        vColor = color;
+        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+        gl_PointSize = size * ( 350.0 / - mvPosition.z );
+        gl_Position = projectionMatrix * mvPosition;
+      }
+      </script>
+      <script type="x-shader/x-fragment" id="wrapFragmentShader">
+          varying vec3 vColor;
+          uniform sampler2D texture;
+          void main(){
+            vec4 textureColor = texture2D( texture, gl_PointCoord );
+            if ( textureColor.a < 0.3 ) discard;
+            vec4 color = vec4(vColor.xyz, 1.0) * textureColor;
+            gl_FragColor = color;
+          }
+      </script>
     <div id="root"></div>
   </body>
   <script src="https://kit.fontawesome.com/cd0b677656.js" crossorigin="anonymous"></script>

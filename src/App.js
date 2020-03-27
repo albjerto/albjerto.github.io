@@ -50,7 +50,9 @@ export default class App extends React.Component {
             link: 'https://www.500px.com/albjerto'
         }
     ];
-
+    
+    //TODO: i still have not decided if i want a full page with all the sections or different sections managed via transitions. If i decide for the second one
+    //all this stuff is useless and has to be deleted
     componentDidMount = () => {
         window.addEventListener('scroll', this.handleScroll);
     }
@@ -83,10 +85,10 @@ export default class App extends React.Component {
         return (
             <div className="page-container">
                 <Navbar items={this.navItems} currentSection={'about'}/>
-                <Header />
+                <Header/>
                 <About /> 
                 <Projects />
-                <Contacts contacts={this.socialMedia}/> 
+                <Contacts contacts={this.socialMedia}/>
             </div>
         );
     }

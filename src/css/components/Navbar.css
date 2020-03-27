@@ -5,9 +5,10 @@ div.overlay {
     z-index: 100;
     left: 0;
     top: 0;
-    background-color: rgba(5, 0, 31, 0.9);
+    background-color: rgb(0, 0, 0);
+    opacity: 0;
     overflow: hidden; 
-    transition: 0.2s ease-in;
+    transition: all .2s ease-in;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,6 +22,7 @@ div.overlay nav a {
     font-weight: bold;
     font-size: 25px;
     color: white;
+    opacity: inherit;
     transition: .2s ease-in;
 }
 
@@ -40,9 +42,12 @@ div.overlay nav a.active, div.overlay nav a:hover {
 
 div.overlay.expanded {
     height: 100%;
+    background-color: rgba(5, 0, 31);
+    opacity: 0.9;
 }
 
 div.burger-button {
+    padding: 15px;
     z-index: 1000;
     position: fixed;
     top: 20px;
