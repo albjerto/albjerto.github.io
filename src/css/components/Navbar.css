@@ -53,6 +53,8 @@ div.burger-button {
     top: 20px;
     right: 20px;
     min-height: 30px;
+    opacity: 0;
+    animation: fadeInDown .3s cubic-bezier(0.645, 0.045, 0.355, 1) .5s forwards;
 }
 
 .burger-button span {

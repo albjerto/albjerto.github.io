@@ -9,15 +9,17 @@ body, html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    background-color: rgb(10, 25, 47);
 }
 
+/* hoverable title letters */
 span.space {
     margin-left: 5px;
     margin-right: 5px;
 }
 
 span.letter {
-    margin-left: 5px;
+    margin-left: 2px;
     color: inherit;
     display: inline-block;
     -webkit-transition:all .2s ease-out;
@@ -42,7 +44,7 @@ span.letter:hover {
 body {
     background-color: red;
 }*/
-
+/*links*/
 a {
     text-decoration: none;
     font-weight: bold;
@@ -63,6 +65,50 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/*animations*/
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+    
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translate3d(0, -100%, 0); }
+    to { opacity: 1; transform: none; }
+}
+ 
+  
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translate3d(0, 20px, 0); }
+    to { opacity: 1; transform: none; }
+}
+  
+  
+@keyframes fadeInUpBig {
+    from { opacity: 0; transform: translate3d(0, 100px, 0); }
+    to { opacity: 1; transform: none; }
+}
+  
+  
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translate3d(-30px, 0, 0); }
+    to { opacity: 1; transform: none; }
+}
+  
+  
+@keyframes fadeInLeftBig {
+    from { opacity: 0; transform: translate3d(-100px, 0, 0); }
+    to { opacity: 1; transform: none; }
+}
+  
+  
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translate3d(20px, 0, 0); }
+    to { opacity: 1; transform: none; }
+}
+
+/*next page buttons*/    
 /*
 div.container {
     min-height: 100vh;

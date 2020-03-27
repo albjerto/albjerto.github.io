@@ -2,9 +2,6 @@ div.contacts-container {
     z-index: 1;
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(to left, #0d071e 0%, rgba(34,14,93,0.25) 50%);
-    /*background-color: #18044e;*/
-    background-color: #152238;
     color: white;
     display: flex;
     justify-content: center;

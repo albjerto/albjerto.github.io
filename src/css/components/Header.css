@@ -6,12 +6,13 @@ div.header-container {
     align-items: center;
     justify-content: flex-start;
     color: white;
-    background: linear-gradient(to left, #0d071e 0%, rgba(34,14,93,0.25) 50%);
-    /*background-color: #18044e;*/
-    background-color: #152238;
+    /*background: linear-gradient(to left, #0d071e 0%, rgba(34,14,93,0.25) 50%);
+    /*background-color: #18044e;
+    background-color: #152238;*/
     width: 100%;
     z-index : 10;
 }
+
 /*
 div.logo-svg {
     width: 100%;
@@ -57,18 +58,39 @@ div.welcome {
     position: absolute;
 }
 
-h1.welcome-title {
+h1.welcome-hero {
     font-weight: lighter;
-    font-size: 25px;
+    font-family: 'Consolas', 'Menlo', sans-serif;
+    font-size: 20px;
+    opacity: 0;
+    animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .1s forwards;
+    color: #d0efff;
 }
 
+h2.welcome-name {
+    font-weight: lighter;
+    font-size: 25px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    opacity: 0;
+    animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .2s forwards;
+}
 
 p.welcome-info {
     font-size: 15px;
+    opacity: 0;
+    animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .3s forwards;
+    color: #d0efff;
+}
+
+p.welcome-sectors {
+    opacity: 0;
+    animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .4s forwards;
+    color: #d0efff;
 }
 
 @media all and (min-width: 841px) {
-    h1.welcome-title {
+    h2.welcome-name {
         font-size: 45px;
     }
     
@@ -83,4 +105,6 @@ canvas {
     position: absolute;
     top: 0;
     right: 0;
+    opacity: 0;
+    animation: fadeInRight .3s cubic-bezier(0.645, 0.045, 0.355, 1) .3s forwards;
 }

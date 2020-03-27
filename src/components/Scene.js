@@ -71,6 +71,8 @@ export default class Scene extends React.Component {
     cameraSetup = (fov, width, height, near, far, x_pos, y_pos, z_pos) => {
         var camera = new THREE.PerspectiveCamera(fov, width/height, near, far);
         camera.position.set(x_pos, y_pos, z_pos);
+        
+        camera.lookAt(this.state.origin);
 
         return camera;
     }
@@ -229,7 +231,7 @@ export default class Scene extends React.Component {
             opacity: 0.6
 		});
         this.wrap = new THREE.Points(bufferWrapGeom, shaderMaterial);
-        this.wrap.translateX(100);
+        this.wrap.translateX(150);
 
         this.scene.add(this.wrap);
         
@@ -256,7 +258,7 @@ export default class Scene extends React.Component {
         }
 
         this.segments = new THREE.LineSegments(this.segmentsGeom, segmentsMat);
-        this.segments.translateX(100);
+        this.segments.translateX(150);
         group.add(this.segments);
 
         window.addEventListener("mousemove",this.mouseMovementHandler);
@@ -278,13 +280,18 @@ export default class Scene extends React.Component {
 
         this.wrap.rotation.z += .001;
         this.segments.rotation.z += .001;
-
-        this.wrap.translateX(-.1);
-        this.segments.translateX(.1);
         
-        this.camera.position.x += (  (this.state.mouse.x * 50) - this.camera.position.x ) * .1;
+        
+        /*this.camera.position.x += (  (this.state.mouse.x * 50) - this.camera.position.x ) * .1;
         this.camera.position.y += ( -(this.state.mouse.y * 50) - this.camera.position.y ) * .1;
-        this.camera.lookAt(this.state.origin);
+        this.camera.lookAt(this.state.origin);*/
+        
+        
+        this.wrap.rotation.x = (  (this.state.mouse.x ) - this.camera.position.x ) * .05;
+        this.wrap.rotation.y = (  (this.state.mouse.y ) - this.camera.position.y ) * .05;
+        this.segments.rotation.x = (  (this.state.mouse.x ) - this.camera.position.x ) * .05;
+        this.segments.rotation.y = (  (this.state.mouse.y ) - this.camera.position.y ) * .05;
+        
 
         this.toMove.forEach(p => {
             this.movePoint(p);
