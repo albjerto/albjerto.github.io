@@ -7,7 +7,7 @@ export default class Scene extends React.Component {
 
         this.state = {
             origin: new THREE.Vector3(0,0,0),
-            thr: 20,
+            thr: 15,
             totPoints: 2000,
             delta: .1,
             colors: [
@@ -90,7 +90,7 @@ export default class Scene extends React.Component {
         var d = this.getEuclideanFromSpherical(p.vec.theta, p.vec.phi);
 
         //updating position, delta = distance step for each iteration
-       /* p.vec.x += d.x * this.state.delta * p.dir;
+        p.vec.x += d.x * this.state.delta * p.dir;
         p.vec.y += d.y * this.state.delta * p.dir;
         p.vec.z += d.z * this.state.delta * p.dir;
 
@@ -103,7 +103,7 @@ export default class Scene extends React.Component {
             || Math.abs(p.initial.y - p.vec.y) > this.state.thr
             || Math.abs(p.initial.z - p.vec.z) > this.state.thr) {
                 p.dir = -p.dir;
-        }*/
+        }
     }
 
     rotate = (x, y, angle) => {
@@ -193,7 +193,7 @@ export default class Scene extends React.Component {
 
             //increase sphere radius. scaleX is there in case
             //i wish to add hover effects
-            vector.multiplyScalar(120 + (Math.random() - 0.5) * 5);
+            vector.multiplyScalar(100 + (Math.random() - 0.5) * 2);
             vector.scaleX = 5;
 
             if(Math.random() > .5) {
@@ -282,15 +282,15 @@ export default class Scene extends React.Component {
         this.segments.rotation.z += .001;
         
         
-        /*this.camera.position.x += (  (this.state.mouse.x * 50) - this.camera.position.x ) * .1;
+        this.camera.position.x += (  (this.state.mouse.x * 50) - this.camera.position.x ) * .1;
         this.camera.position.y += ( -(this.state.mouse.y * 50) - this.camera.position.y ) * .1;
-        this.camera.lookAt(this.state.origin);*/
+        this.camera.lookAt(this.state.origin);
         
         
-        this.wrap.rotation.x = (  (this.state.mouse.x ) - this.camera.position.x ) * .05;
+        /*this.wrap.rotation.x = (  (this.state.mouse.x ) - this.camera.position.x ) * .05;
         this.wrap.rotation.y = (  (this.state.mouse.y ) - this.camera.position.y ) * .05;
         this.segments.rotation.x = (  (this.state.mouse.x ) - this.camera.position.x ) * .05;
-        this.segments.rotation.y = (  (this.state.mouse.y ) - this.camera.position.y ) * .05;
+        this.segments.rotation.y = (  (this.state.mouse.y ) - this.camera.position.y ) * .05;*/
         
 
         this.toMove.forEach(p => {
@@ -353,7 +353,8 @@ export default class Scene extends React.Component {
     resizeHandler = (e) => {
         var width = this.canvas.offsetWidth;
         var height = this.canvas.container.offsetHeight;
-        this.canvas.height = height;
+        this.canvas.height = this.canvas.offsetHeight;
+        this.canvas.width = this.canvas.container.offsetWidth;
         this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(width, height);

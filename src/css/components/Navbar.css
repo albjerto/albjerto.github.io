@@ -1,49 +1,54 @@
-div.overlay { 
-    height: 0;
-    width: 100%;
+div.overlay {
     position: fixed;
-    z-index: 100;
-    left: 0;
     top: 0;
-    background-color: rgb(0, 0, 0);
+    right: 0;
+    height: 370px;
+    padding-right: 1px;
+    z-index: 10;
+    width: 122px;
     opacity: 0;
-    overflow: hidden; 
-    transition: all .2s ease-in;
+    color: #61d3a3;
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    transform: translateY(-20px);
+    transition: transform 700ms cubic-bezier(0.77, 0, 0.175, 1), background-color 700ms ease, opacity 500ms ease;
+}
+
+
+ul.navbar-list {
     justify-content: center;
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
     align-items: center;
 }
 
-div.overlay nav a {
-    display: block;
-    padding: 15px 50px;
-    text-align: center;
+ul.navbar-list a {
+    display: none;  /*<- else the links would still be clickable even with hidden overlay*/
+}
+
+div.overlay.expanded ul.navbar-list a {
+    display: inline-block;
+    cursor: pointer;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 25px;
-    color: white;
-    opacity: inherit;
-    transition: .2s ease-in;
+    box-shadow: none;
+    color: #61d3a3;
+    padding: 20px;
+    font-family: 'Consolas', 'Menlo', sans-serif;
 }
 
-@media all and (min-width: 841px) {
-    div.overlay nav a {
-        padding: 30px 100px;
-    }
+div.overlay.expanded ul.navbar-list a:hover {
+    color:#d0efff;
+    transform: translateY(-5px);
 }
 
-div.overlay nav a.active, div.overlay nav a:hover {
-    /*color: #255784;
-    background-color: #2196f3;
-    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;*/
-    color: #21ebff;
-    text-shadow: 0 0 10px #21ebff, 0 0 40px #21ebff, 0 0 80px #21ebff;
-}
-
-div.overlay.expanded {
-    height: 100%;
-    background-color: rgba(5, 0, 31);
-    opacity: 0.9;
+div.overlay.expanded ul.navbar-list a.active {
+    color:#d0efff;
+    box-shadow: inset 2px 0 0 #d0efff;
 }
 
 div.burger-button {
@@ -57,13 +62,20 @@ div.burger-button {
     animation: fadeInDown .3s cubic-bezier(0.645, 0.045, 0.355, 1) .5s forwards;
 }
 
+div.overlay.expanded {
+    transform: translateY(20px);
+    opacity: 1;
+    background-color: #12082e;
+    transition: transform 700ms cubic-bezier(0.77, 0, 0.175, 1), background-color 700ms ease, opacity 500ms ease;
+}
+
 .burger-button span {
     display: block;
     width: 42px;
     height: 2px;
     margin: 8px;
-    background-color: #7a7a7a;
-    transition: .1s ease-in;
+    background-color: #61d3a3;
+    transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 div.burger-button:hover {

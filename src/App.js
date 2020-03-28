@@ -10,7 +10,7 @@ export default class App extends React.Component {
     constructor(prop) {
         super(prop);
 
-        this.state = { currentScroll: 0, currentSection : '' };
+        this.state = { currentScroll: 0, currentSection : 'home' };
     }
 
     navItems = [
@@ -29,6 +29,11 @@ export default class App extends React.Component {
     ];
 
     socialMedia = [
+        {
+            name: 'LinkedIn',
+            icon: 'fab fa-linkedin',
+            link: 'https://www.linkedin.com/in/alberto-jesu'
+        },
         {
             name: 'Facebook',
             icon: 'fab fa-facebook',
@@ -51,8 +56,6 @@ export default class App extends React.Component {
         }
     ];
     
-    //TODO: i still have not decided if i want a full page with all the sections or different sections managed via transitions. If i decide for the second one
-    //all this stuff is useless and has to be deleted
     componentDidMount = () => {
         window.addEventListener('scroll', this.handleScroll);
     }
@@ -64,6 +67,31 @@ export default class App extends React.Component {
     handleScroll = evt => {
         this.updateScroll();
         this.updateSection();
+        this.slideInVisibleElements();
+    }
+
+    slideInVisibleElements = () => {
+        var elements = Array.from(document.getElementsByClassName('to-slide'));
+
+        elements.forEach(e => {
+            if(this.isInViewPort(e)) {
+                e.classList.remove("to-slide");
+                //the last token indicates the direction
+                var dir = e.classList[e.classList.length-1];
+                e.classList.remove(dir);
+                e.classList.add("fade-in-"+dir);
+            }
+        })
+    }
+
+    isInViewPort = (element) => {
+        var bounding = element.getBoundingClientRect();
+
+        if (((window.innerHeight || document.documentElement.clientHeight) - bounding.top)/100 >= 2) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     updateScroll = () => {
@@ -77,14 +105,22 @@ export default class App extends React.Component {
     }
 
     updateSection = () => {
-        //do nothing
+        var sections = Array.from(document.getElementsByTagName('section'))
+                            .filter(x => {
+                               return x.getBoundingClientRect().top > -window.innerHeight && x.getBoundingClientRect().bottom > 0;
+                            });
+        var closest = sections[0];
+        if(closest) {
+            this.setState({ currentSection : closest.getAttribute('id') });
+        }
+
     }
 
     render() {
         const { currentScroll, currentSection } = this.state;
         return (
             <div className="page-container">
-                <Navbar items={this.navItems} currentSection={'about'}/>
+                <Navbar items={this.navItems} currentSection={this.state.currentSection}/>
                 <Header/>
                 <About /> 
                 <Projects />

@@ -1,15 +1,9 @@
 div.contacts-container {
-    z-index: 1;
-    width: 100%;
     min-height: 100vh;
-    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-div.contacts-text {
-    margin-left: 5%;   
+    line-height: 1.5em;
 }
 
 div.contacts-group {
@@ -18,4 +12,81 @@ div.contacts-group {
     width: 100%;
     font-size:35px;
     margin-top: 30px;
+}
+
+div.contacts-sidebar {
+    width: 40px;
+    position: fixed;
+    bottom: 0px;
+    right: auto;
+    z-index: 10;
+    width: 13%;
+    color: #61d3a3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .6s forwards;
+    opacity: 0;
+}
+
+ul {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+ul.contacts-banner {
+    font-size: 40px;
+    margin: 10%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+ul.contacts-sidebar-list {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+ul.contacts-sidebar-list::after{
+    content: "";
+    display: block;
+    width: 1px;
+    height: 100px;
+    background-color: #61d3a3;
+    margin: 0px auto;
+}
+
+a.contacts-link {
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: none;
+    color: #61d3a3;
+    transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+ul.contacts-sidebar-list a {
+    opacity: 0;
+    display: inline-block;
+    padding: 20px;
+    text-decoration-skip-ink: auto;
+    position: relative;
+}
+
+li.contacts-item a.contacts-link span {
+    transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+li.contacts-item a.contacts-link:hover span {
+    color:#d0efff;
+    transform: translateY(-5px);
+}
+
+@media screen and (max-width: 841px) {
+    div.contacts-sidebar {
+        display: none;
+    }
 }
