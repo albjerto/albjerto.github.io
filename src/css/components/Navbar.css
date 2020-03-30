@@ -25,6 +25,7 @@ ul.navbar-list {
     flex-direction: column;
     -webkit-box-align: center;
     align-items: center;
+    box-shadow: inset 2px 0 0 #505050;
 }
 
 ul.navbar-list a {
@@ -39,6 +40,7 @@ div.overlay.expanded ul.navbar-list a {
     color: #61d3a3;
     padding: 20px;
     font-family: 'Consolas', 'Menlo', sans-serif;
+    width: 100%;
 }
 
 div.overlay.expanded ul.navbar-list a:hover {
@@ -49,6 +51,7 @@ div.overlay.expanded ul.navbar-list a:hover {
 div.overlay.expanded ul.navbar-list a.active {
     color:#d0efff;
     box-shadow: inset 2px 0 0 #d0efff;
+    background-color: rgb(23, 33, 48);
 }
 
 div.burger-button {

@@ -11,7 +11,7 @@ const ContactLinks = props => {
                     key={item.name}
                     className="contacts-item"   
                 >
-                    <a className={"contacts-link" + ((position) ? " fade-in-left-"+i-- : "")} title={"Link to Alberto's " + item.name} href={item.link}><span className={item.icon}></span></a>
+                    <a className={"contacts-link" + ((position) ? " fade-in-left-"+i-- : "")} title={"Link to Alberto's " + item.name} href={item.link} target="social"><span className={item.icon}></span></a>
                 </li>
 
         );
@@ -40,15 +40,22 @@ export default class Contacts extends React.Component {
             <section id="contacts" className="contacts-section">
                 <div className="contacts-container container to-slide up">
                     <div className="contacts-text">
-                        <h3>Get in touch!</h3>
-                        <p className="mail-contacts">If you want to get in touch with me for any reason, may it be about a project or just to say hi, send me a mail at <a className="mail-link" href="mailto:albertojesu1005@gmail.com">albertojesu1995@gmail.com</a> or fill in the form below.</p>
-                        <p className="socials-contact">If you wish to follow me or to reach out to me in other ways, you can find me also on</p>
+                        <h3>Get in touch </h3>
+                        <p className="mail-contacts">If you want to get in touch with me for any reason, may it be about work or just to say hi, send me a mail at <a className="mail-link" href="mailto:albertojesu1005@gmail.com">albertojesu1995@gmail.com</a> or fill in the form below. (che devo ancora fare ma mi pesa tantissimo il culo)</p>
+                    </div>
+                    <form id="contact-form">
+                        <label for="name">
+                            <input type="text" id="name"/>
+                        </label>
+                    </form>
+                    <div className="contacts-mobile">
+                        <p>Alternatively, if you wish to follow me or to contact me in other ways, you can find me also on </p>
                         <ul className="contacts-banner">
                             <ContactLinks items={contacts} side={false}/>
                         </ul>
                     </div>
                 </div>
-                <div className="contacts-sidebar">
+                <div className="contacts-sidebar" id="contacts-sidebar">
                     <ul className="contacts-sidebar-list">
                         <ContactLinks items={contacts} side={true}/>
                     </ul>

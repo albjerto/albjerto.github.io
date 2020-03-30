@@ -1,9 +1,11 @@
 div.contacts-container {
-    min-height: 100vh;
+    min-height: 101vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     line-height: 1.5em;
+    text-align: center;
 }
 
 div.contacts-group {
@@ -37,8 +39,7 @@ ul {
 
 ul.contacts-banner {
     font-size: 40px;
-    margin: 10%;
-    
+    margin: 10%;  
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -85,8 +86,16 @@ li.contacts-item a.contacts-link:hover span {
     transform: translateY(-5px);
 }
 
+div.contacts-mobile {
+    display: none;
+}
+
 @media screen and (max-width: 841px) {
     div.contacts-sidebar {
         display: none;
+    }
+
+    div.contacts-mobile {
+        display:block;
     }
 }

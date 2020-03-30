@@ -111,11 +111,11 @@ export default class Scene extends React.Component {
             x: 0,
             y: 0
         };
-        var x = x*Math.cos(angle) - y*Math.sin(angle);
-        var y = x*Math.sin(angle) + y*Math.cos(angle);
+        var r_x = x*Math.cos(angle) - y*Math.sin(angle);
+        var r_y = x*Math.sin(angle) + y*Math.cos(angle);
 
-        res.x = x;
-        res.y = y;
+        res.x = r_x;
+        res.y = r_y;
 
         return res;
     }
@@ -138,7 +138,7 @@ export default class Scene extends React.Component {
         var loader = new THREE.TextureLoader();
         loader.setCrossOrigin("");
         var dotTexture = loader.load("dotTexture.png");
-        dotTexture.anisotropy = this.renderer.getMaxAnisotropy();
+        dotTexture.anisotropy = this.renderer.capabilities.getMaxAnisotropy();
 
         //TODO: use only the bufferGeometry
         this.dotsGeometry = new THREE.Geometry();

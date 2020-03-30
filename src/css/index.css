@@ -94,7 +94,7 @@ a {
     color: #d0efff;
     opacity: inherit;
     transition: .2s cubic-bezier(0.645, 0.045, 0.355, 1);
-    box-shadow: inset 0 -5px 0 #61d3a3;
+    box-shadow: inset 0 -2px 0 #61d3a3;
 }
 
 a:hover {
@@ -191,6 +191,10 @@ code {
 
 .to-slide {
     opacity: 0;
+}
+
+.fade-out-left {
+    animation: fadeInLeft .5s cubic-bezier(0.645, 0.045, 0.355, 1) reverse;
 }
   
 @keyframes fadeInLeftBig {
