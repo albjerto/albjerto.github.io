@@ -21,19 +21,62 @@ const ContactLinks = props => {
 }
 
 export default class Contacts extends React.Component {
-    
-    //useless for now, i'll implement a working form as soon as i have time
     constructor(props) {
         super(props);
+        this.nameId="name";
+        this.emailId="email";
+        this.textId="text";
 
         this.state = {
-            name : '',
+            name: '',
             email: '',
-            subject: '',
             text: ''
-        }; 
+        }
     }
- 
+
+    handleChange = e => {
+        var key = e.target.attribute.it;
+        this.setState({ [key] : e.target.value.trim() });
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+        if(this._validateForm());
+    }
+
+    _validateForm = () => {
+        var name = this.state.name;
+
+        if(name.length < 5) {
+            document.getElementById(this.nameId).classList.add('error-highlight');
+            return false;
+        }
+        document.getElementById(this.nameId).classList.remove('error-highlight');
+
+        var email = this.state.email;
+        if(!this._validateMail(email)) {
+            document.getElementById(this.emailId).classList.add('error-highlight');
+            return false;
+        }
+        document.getElementById(this.emailId).classList.remove('error-highlight');
+
+        var message = this.state.text;
+        if(message.length < 5) {
+            document.getElementById(this.textId).classList.add('error-highlight');
+            return false;
+        }
+        document.getElementById(this.textId).classList.remove('error-highlight');
+        return true;
+        
+    }
+
+    _validateMail = email => {
+        if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+            return (true)
+        }
+        return false;
+    }
+
     render() {
         const { contacts } = this.props;
         return (
@@ -43,10 +86,17 @@ export default class Contacts extends React.Component {
                         <h3>Get in touch </h3>
                         <p className="mail-contacts">If you want to get in touch with me for any reason, may it be about work or just to say hi, send me a mail at <a className="mail-link" href="mailto:albertojesu1005@gmail.com">albertojesu1995@gmail.com</a> or fill in the form below. (che devo ancora fare ma mi pesa tantissimo il culo)</p>
                     </div>
-                    <form id="contact-form">
-                        <label for="name">
-                            <input type="text" id="name"/>
-                        </label>
+                    <form className="contact-form" id="contact-form">
+                        <div className="form-row">
+                            <input type="text" className="contact-form-input" id={this.nameId} placeholder="Your name"/>
+                            <input type="email" className="contact-form-input" id={this.emailId} placeholder="Your e-mail"/>
+                        </div>
+                        <div className="form-row">
+                            <textarea className="contact-form-input" id={this.textId} placeholder="Finally, your message"/>
+                        </div>
+                        <div className="form-row">
+                            <button type="submit" className="form-submit" id="input-4" onClick={this.handleSubmit}>Send it!</button>
+                        </div>
                     </form>
                     <div className="contacts-mobile">
                         <p>Alternatively, if you wish to follow me or to contact me in other ways, you can find me also on </p>

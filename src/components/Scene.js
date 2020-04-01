@@ -147,7 +147,7 @@ export default class Scene extends React.Component {
         var colorsAttr = new Float32Array(this.state.totPoints * 3);
 
         //spiral constants
-        const a = 1, b = .5;
+        //const a = 1, b = .5;
         
         for (var i = 0; i < this.state.totPoints; i++) {
             var vector = new THREE.Vector3();
@@ -209,7 +209,7 @@ export default class Scene extends React.Component {
             this.dotsGeometry.vertices.push(vector);
             vector.toArray(positions, i * 3);
             this.state.colors[vector.color].toArray(colorsAttr, i * 3);
-            sizes[i] = 5;
+            sizes[i] = 4;
         }
 
         var bufferWrapGeom = new THREE.BufferGeometry();
@@ -264,6 +264,7 @@ export default class Scene extends React.Component {
         window.addEventListener("mousemove",this.mouseMovementHandler);
         window.addEventListener("resize", this.resizeHandler);
         this.mouse = new THREE.Vector2(-100,-100);
+        this.clock = new THREE.Clock();
         this.start();
     }
 
@@ -282,15 +283,15 @@ export default class Scene extends React.Component {
         this.segments.rotation.z += .001;
         
         
-        this.camera.position.x += (  (this.state.mouse.x * 50) - this.camera.position.x ) * .1;
+        /*this.camera.position.x += (  (this.state.mouse.x * 50) - this.camera.position.x ) * .1;
         this.camera.position.y += ( -(this.state.mouse.y * 50) - this.camera.position.y ) * .1;
-        this.camera.lookAt(this.state.origin);
+        this.camera.lookAt(this.state.origin);*/
         
         
-        /*this.wrap.rotation.x = (  (this.state.mouse.x ) - this.camera.position.x ) * .05;
+        this.wrap.rotation.x = (  (this.state.mouse.x ) - this.camera.position.x ) * .05;
         this.wrap.rotation.y = (  (this.state.mouse.y ) - this.camera.position.y ) * .05;
         this.segments.rotation.x = (  (this.state.mouse.x ) - this.camera.position.x ) * .05;
-        this.segments.rotation.y = (  (this.state.mouse.y ) - this.camera.position.y ) * .05;*/
+        this.segments.rotation.y = (  (this.state.mouse.y ) - this.camera.position.y ) * .05;
         
 
         this.toMove.forEach(p => {
@@ -302,14 +303,16 @@ export default class Scene extends React.Component {
         var intersections = this.raycaster.intersectObjects([this.wrap]);
         var hovered = [];
         var prevHovered = [];
-        if (intersections.length) {
-            for(i = 0; i < intersections.length; i++) {
-                var index = intersections[i].index;
-                hovered.push(index);
-                if (prevHovered.indexOf(index) === -1) {
-                    this.onDotHover(index);
-                }
-             }
+        if(this.clock.getElapsedTime() >= 1) {
+            if (intersections.length) {
+                for(i = 0; i < intersections.length; i++) {
+                    var index = intersections[i].index;
+                    hovered.push(index);
+                    if (prevHovered.indexOf(index) === -1) {
+                        this.onDotHover(index);
+                    }
+                 }
+            }
         }
         for(i = 0; i < prevHovered.length; i++){
             if(hovered.indexOf(prevHovered[i]) === -1){
@@ -362,16 +365,14 @@ export default class Scene extends React.Component {
     }
 
     onDotHover = (index) => {
-        /*
-        this.attributeSizes.array[index] = 20;*/
-        console.log("hovered")
-       /* this.dotsGeometry.vertices[index].x = this.state.mouse.x;
+        
+        /*this.attributeSizes.array[index] = 20;
+        this.dotsGeometry.vertices[index].x = this.state.mouse.x;
         this.dotsGeometry.vertices[index].y = this.state.mouse.y;*/
     }
 
     mouseOut = (index) => {
-        /*this.attributeSizes.array[index] = 5;*/
-        console.log("henlo")
+        this.attributeSizes.array[index] = 4;
     }
 
     render() {

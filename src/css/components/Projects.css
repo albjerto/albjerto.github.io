@@ -22,11 +22,13 @@ div.project {
     box-shadow: 5px 5px 5px rgba(21, 23, 26, .1);
 }
 
-div.project-thumbnail div {
+div.project-thumbnail img {
+    width: 450px;
+    height: 350px;
     object-fit: cover;
-    width: auto;
-    height: 100%;
-    filter: grayscale(100%) contrast(1) brightness(80%);
+    opacity: .4;
+    filter: blur(2px) brightness(60%);
+    transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 div.project-info {
@@ -39,9 +41,7 @@ div.project-info {
 }
 
 div.project-thumbnail {
-    object-fit: cover;
     position: relative;
-    opacity: .4;
     z-index: 1;
     grid-column: 1 / -1;
     grid-row: 1 / -1;
@@ -59,27 +59,6 @@ div.project-text-wrapper {
 
 div.project:nth-of-type(2n+1) div.project-info {
     text-align: right;
-}
-
-@media screen and (min-width: 842px) {
-    div.project-info {
-        padding: 30px;
-    }
-    
-    div.project-thumbnail {
-        grid-column: 3 / -1;
-    }
-
-    div.project:nth-of-type(2n+1) div.project-thumbnail {
-        grid-column: 1 / 1;
-    }
-
-    div.project-text-wrapper {
-        grid-column: 1 / 3;
-    }
-    div.project:nth-of-type(2n+1) div.project-text-wrapper {
-        grid-column: 2 / -1;
-    }
 }
 
 h4 {
@@ -117,11 +96,95 @@ div.project-more a {
 }
 
 div.project-more span {
-    padding: 20px 0 20px 20px;
+    padding: 20px 0 20px;
     transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 div.project-more span:hover {
     color:#d0efff;
     transform: translateY(-5px);
+}
+
+/*buttons on carousel*/
+div.next-button, div.prev-button {
+    position: absolute;
+    bottom: 50%;
+    display: none;
+}
+
+div.next-button {
+    right: 0px;
+}
+
+div.prev-button {
+    left: 0px;
+}
+
+img.hidden {
+    display: none;
+    visibility: hidden;
+    width: 0;
+}
+
+span.next, span.prev {
+    position: relative;
+    display: block;
+    width: 12px;
+    height: 2px;
+    margin: 6px;
+    background-color: #7a7a7a;
+}
+
+div.next-button span:first-child, div.prev-button span:last-child {
+    transform: rotate(45deg);
+}
+
+div.next-button span:last-child, div.prev-button span:first-child {
+    transform: rotate(-45deg);
+}
+
+
+@media screen and (min-width: 842px) {
+    div.project-info {
+        padding: 30px;
+    }
+    
+    div.project-thumbnail {
+        grid-column: 3 / -1;
+    }
+
+    div.project:nth-of-type(2n+1) div.project-thumbnail {
+        grid-column: 1 / 1;
+    }
+
+    div.project-text-wrapper {
+        grid-column: 1 / 3;
+    }
+    div.project:nth-of-type(2n+1) div.project-text-wrapper {
+        grid-column: 2 / -1;
+    }
+
+    div.project-thumbnail img {
+        filter: blur(0px);
+        transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+
+    div.project-thumbnail:hover img {
+        filter: brightness(100%);
+        opacity: 1;
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+
+    div.project-thumbnail:hover > div, div.next-button:hover, div.prev-button:hover {
+        display: block;
+        cursor: pointer;
+    }
+
+    img.hidden {
+        width: 0;
+        height:auto;
+        visibility: hidden;
+        display: none;
+        transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
 }

@@ -16,7 +16,7 @@ const About = () => {
                     <p className="about-additional about-interests">In my free time, I enjoy learning new things, taking landscape photographs or hiking.</p>
                 </div>
                 <div className="about-photo">
-                    <img className="propic" alt="profile picture" src={proPic}/>
+                    <img className="propic" alt="Alberto profile" src={proPic}/>
                 </div>
             </div>
         </section>
