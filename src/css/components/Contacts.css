@@ -39,7 +39,7 @@ ul {
 
 ul.contacts-banner {
     font-size: 40px;
-    margin: 10%;  
+    margin: 5%;  
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -86,70 +86,6 @@ li.contacts-item a.contacts-link:hover span {
     transform: translateY(-5px);
 }
 
-div.contacts-mobile {
-    display: none;
-}
-
-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-div.form-row {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    margin: 20px;
-}
-
-input, textarea {
-    width: 100%;
-    font-size: 20px;
-    font-family: 'Spartan', sans-serif;
-    transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
-    color: #d0efff;
-    background: none;
-    border: none;
-    border-bottom: 2px solid rgba(208, 239, 255, .4);
-    margin: 20px;
-}
-
-input.error-highlight, textarea.error-highlight {
-    border-bottom: 2px solid rgb(170, 43, 43);
-}
-
-input:focus, textarea:focus {
-    outline: none;
-    border-bottom: 2px solid #61d3a3;
-}
-
-input {
-    height: 50px;
-}
-
-button#input-4 {
-    color: rgb(97, 211, 163);
-    background-color: transparent;
-    font-size: 15px;
-    font-family: "Consolas", "Menlo", "Roboto Mono", sans-serif;
-    cursor: pointer;
-    border: 2px solid #61d3a3;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
-    padding: 10px 20px;
-}
-
-button#input-4:hover{
-    color: black;
-    background-color: rgb(97, 211, 163);
-}
-
 @media screen and (max-width: 841px) {
     div.contacts-sidebar {
         display: none;
@@ -157,11 +93,5 @@ button#input-4:hover{
 
     div.contacts-mobile {
         display:block;
-    }
-}
-
-@media screen and (min-width:841px) {
-    div.form-row {
-        flex-direction: row;
     }
 }

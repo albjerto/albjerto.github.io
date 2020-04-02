@@ -46,14 +46,19 @@ class Thumbnails extends React.Component {
         var toRemove = siblings.find(el => {
             return el.tagName !== "DIV" && !el.classList.contains('hidden');
         });
-        toRemove.classList.remove('fade-in-left');
-        toRemove.classList.remove('fade-in-right');
-        toRemove.classList.add('hidden');
-        var toSlide = siblings.find(el => {
-            return el.classList.contains('image-slide-'+this.state.curr);
-        });
-        toSlide.classList.remove('hidden');
-        toSlide.classList.add('fade-in-'+dir);
+        if(toRemove !== undefined) {
+            toRemove.classList.remove('fade-in-left');
+            toRemove.classList.remove('fade-in-right');
+            toRemove.classList.add('hidden');
+            var toSlide = siblings.find(el => {
+                return el.classList.contains('image-slide-'+this.state.curr);
+            });
+            if(toSlide !== undefined) {
+                toSlide.classList.remove('hidden');
+                toSlide.classList.add('fade-in-'+dir);
+            }
+
+        }
     }
 
     render() {

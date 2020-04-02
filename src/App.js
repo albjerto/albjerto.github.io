@@ -59,7 +59,7 @@ export default class App extends React.Component {
     projects = [ 
         {
             title: 'Store shelf recognition',
-            image: [require('./media/koine_1.JPG'), require('./media/koine_2.JPG'), require('./media/koine_3.JPG')],
+            image: [require('./media/box_1.jpg')],
             desc: 'University project for the development of a computer vision algorithm that recognizes cereal boxes on store shelves, with the intent of creating a device for blind people',
             more: 'https://www.github.com/albjerto',
             link_title: 'Link to GitHub repository',
@@ -68,7 +68,7 @@ export default class App extends React.Component {
         },
         {
             title: 'Edil Landi Portfolio',
-            image: [require('./media/koine_1.JPG'), require('./media/koine_2.JPG'), require('./media/koine_3.JPG')],
+            image: [require('./media/edil_1.JPG'), require('./media/edil_2.JPG'), require('./media/edil_3.JPG')],
             desc: 'Simple and fully responsive portfolio website for a construction company in Forlì',
             more: 'https://www.edil-landi.it',
             link_title: 'Link to external website',
@@ -86,7 +86,7 @@ export default class App extends React.Component {
         },
         {
             title: 'MITM attack simulation',
-            image: [require('./media/koine_1.JPG'), require('./media/koine_2.JPG'), require('./media/koine_3.JPG')],
+            image: [require('./media/mitm_1.JPG')],
             desc: 'Simulation of a man-in-the-middle attack that aims to find vulnerabilities in the most used IoT protocols, in collaboration with CryptoNet Labs',
             more: 'mailto:albertojesu1995@gmail.com',
             link_title: 'Contact me to know more',
@@ -95,7 +95,7 @@ export default class App extends React.Component {
         },
         {
             title: 'robo-butler',
-            image: [require('./media/koine_1.JPG'), require('./media/koine_2.JPG'), require('./media/koine_3.JPG')],
+            image: [require('./media/fabio_1.jpg')],
             desc: 'Project that simulates with a physical robot, and its virtual twin, the behaviour of a butler in a room full of moving obstacles in a technologically heterogeneous environment',
             more: 'https://www.github.com/albjerto',
             link_title: 'Link to GitHub repository',

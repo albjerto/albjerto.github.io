@@ -219,7 +219,7 @@ code {
 }
 
 .fade-out-left {
-    animation: fadeOutLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+    animation: fadeOutLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards !important;
 }
 
 /*next page buttons*/    

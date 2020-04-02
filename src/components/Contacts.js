@@ -84,22 +84,10 @@ export default class Contacts extends React.Component {
                 <div className="contacts-container container to-slide up">
                     <div className="contacts-text">
                         <h3>Get in touch </h3>
-                        <p className="mail-contacts">If you want to get in touch with me for any reason, may it be about work or just to say hi, send me a mail at <a className="mail-link" href="mailto:albertojesu1005@gmail.com">albertojesu1995@gmail.com</a> or fill in the form below. (che devo ancora fare ma mi pesa tantissimo il culo)</p>
+                        <p className="mail-contacts">If you want to get in touch with me for any reason, may it be about work or just to say hi, send me a mail at <a className="mail-link" href="mailto:albertojesu1005@gmail.com">albertojesu1995@gmail.com</a> and I will get back to you as soon as possible.</p>
                     </div>
-                    <form className="contact-form" id="contact-form">
-                        <div className="form-row">
-                            <input type="text" className="contact-form-input" id={this.nameId} placeholder="Your name"/>
-                            <input type="email" className="contact-form-input" id={this.emailId} placeholder="Your e-mail"/>
-                        </div>
-                        <div className="form-row">
-                            <textarea className="contact-form-input" id={this.textId} placeholder="Finally, your message"/>
-                        </div>
-                        <div className="form-row">
-                            <button type="submit" className="form-submit" id="input-4" onClick={this.handleSubmit}>Send it!</button>
-                        </div>
-                    </form>
                     <div className="contacts-mobile">
-                        <p>Alternatively, if you wish to follow me or to contact me in other ways, you can find me also on </p>
+                        <p>Alternatively, if you wish to follow me or to contact me in other ways, you can also find me on </p>
                         <ul className="contacts-banner">
                             <ContactLinks items={contacts} side={false}/>
                         </ul>
