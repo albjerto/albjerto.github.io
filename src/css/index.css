@@ -3,14 +3,14 @@ body, html {
 
     padding: 0;
     margin: 0;
-    font-family: 'Spartan', 'Didact Gothic', 'Comfortaa', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
+    font-family: 'Spartan', 'Roboto',  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
     font-size: 20px;
-    background-color: rgb(10, 25, 47);
+    background-color: #0a192f;
     color: #d0efff;
 }
 
@@ -23,7 +23,7 @@ span.space {
 h3 {
     font-weight: lighter;
     color: #61d3a3;
-    font-family: 'Consolas', 'Menlo', sans-serif;
+    font-family: 'Consolas', 'Menlo', 'Droid Sans Mono', monospace;
     border-bottom: 1px solid #61d3a3;
 }
 

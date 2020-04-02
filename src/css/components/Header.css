@@ -58,7 +58,7 @@ div.welcome {
 
 h1.welcome-hero {
     font-weight: lighter;
-    font-family: 'Consolas', 'Menlo', sans-serif;
+    font-family: 'Consolas', 'Menlo', 'Droid Sans Mono', monospace;
     font-size: 20px;
     opacity: 0;
     animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .1s forwards;

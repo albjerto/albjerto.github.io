@@ -40,7 +40,7 @@ div.overlay.expanded ul.navbar-list a {
     box-shadow: none;
     color: #61d3a3;
     padding: 20px;
-    font-family: 'Consolas', 'Menlo', sans-serif;
+    font-family: 'Consolas', 'Menlo','Droid Sans Mono', monospace;
     width: 100%;
 }
 
