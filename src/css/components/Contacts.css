@@ -53,12 +53,24 @@ ul.contacts-sidebar-list {
 }
 
 ul.contacts-sidebar-list::after{
+    opacity: 0;
     content: "";
     display: block;
     width: 1px;
     height: 100px;
     background-color: #61d3a3;
-    margin: 0px auto;
+    animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .8s forwards;
+
+}
+
+ul.contacts-sidebar-list::before{
+    content: "";
+    display: block;
+    width: 1px;
+    height: 800px;
+    background-color: #61d3a3;
+    opacity: 0;
+    animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) 1.4s forwards;
 }
 
 a.contacts-link {
