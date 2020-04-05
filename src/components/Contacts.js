@@ -84,7 +84,7 @@ export default class Contacts extends React.Component {
                 <div className="contacts-container container to-slide up">
                     <div className="contacts-text">
                         <h3>Get in touch </h3>
-                        <p className="mail-contacts">If you want to get in touch with me for any reason, may it be about work or just to say hi, send me a mail at <a className="mail-link" href="mailto:albertojesu1005@gmail.com">albertojesu1995@gmail.com</a> and I will get back to you as soon as possible.</p>
+                        <p className="mail-contacts">If you want to get in touch with me for any reason, may it be about work or just to say hi, send me a mail at <a className="mail-link" href="mailto:albertojesu1995@gmail.com">albertojesu1995@gmail.com</a> and I will get back to you as soon as possible.</p>
                     </div>
                     <div className="contacts-mobile">
                         <p>Alternatively, if you wish to follow me or to contact me in other ways, you can also find me on </p>
