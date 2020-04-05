@@ -11,7 +11,7 @@ const ContactLinks = props => {
                     key={item.name}
                     className="contacts-item"   
                 >
-                    <a className={"contacts-link" + ((position) ? " fade-in-left-"+i-- : "")} title={"Link to Alberto's " + item.name} href={item.link} target="social"><span className={item.icon}></span></a>
+                    <a className={"contacts-link" + ((position) ? " fade-in-left-"+i-- : "")} title={"Link to Alberto's " + item.name} href={item.link} target="social">{item.icon}</a>
                 </li>
 
         );

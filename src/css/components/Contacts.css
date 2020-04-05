@@ -89,13 +89,26 @@ ul.contacts-sidebar-list a {
     position: relative;
 }
 
-li.contacts-item a.contacts-link span {
+li.contacts-item a.contacts-link svg {
     transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-li.contacts-item a.contacts-link:hover span {
+li.contacts-item a.contacts-link:hover svg {
     color:#d0efff;
     transform: translateY(-5px);
+}
+
+svg {
+    fill: currentColor;
+    vertical-align: middle;
+}
+
+.contacts-sidebar svg {
+    height: 21px;
+}
+
+.contacts-banner svg {
+    height: 30px;
 }
 
 @media screen and (max-width: 841px) {
