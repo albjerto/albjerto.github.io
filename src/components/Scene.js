@@ -269,6 +269,7 @@ export default class Scene extends React.Component {
     }
 
     start = () => {
+        document.getElementsByTagName('canvas')[0].classList.add('fade-in-right');
         if (!this.frameId) {
             this.frameId = requestAnimationFrame(this.animate);
         }
