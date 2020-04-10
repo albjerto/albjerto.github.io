@@ -27,7 +27,7 @@ export default class Header extends React.Component {
                             <span className="letter">I</span><span className="letter">'</span><span className="letter">m</span><span className="space"> </span><span className="letter">A</span><span className="letter">l</span><span className="letter">b</span><span className="letter">e</span><span className="letter">r</span><span className="letter">t</span><span className="letter">o</span><span className="space"> </span><span className="letter">J</span><span className="letter">e</span><span className="letter">s</span><span className="letter">u</span><span className="letter">.</span>
                         </h2>
                         <p className="welcome-info">Software Engineer and Web Developer. I build things.</p>
-                        <p className="welcome-sectors">AI | Web | Security</p>
+                        <p className="welcome-sectors"><span>AI</span><span>Web</span><span>Security</span></p>
                     </div>
                 </div>
                 <Scene />
