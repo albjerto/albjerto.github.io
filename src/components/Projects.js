@@ -113,7 +113,7 @@ const Projects = (props) => {
                             })}
                         </div>
                         <div className="project-more">
-                            <a href={p.more} title={p.link_title}><span className={p.icon}></span></a>
+                            <a href={p.more} title={p.link_title}>{p.icon}</a>
                         </div>
                     </div>
                 </div>

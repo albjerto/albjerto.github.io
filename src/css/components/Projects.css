@@ -97,12 +97,13 @@ div.project-more a {
     color: #61d3a3;
 }
 
-div.project-more span {
+div.project-more svg {
     padding: 20px 0 20px;
     transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    height: 20px;
 }
 
-div.project-more span:hover {
+div.project-more svg:hover {
     color:#d0efff;
     transform: translateY(-5px);
 }

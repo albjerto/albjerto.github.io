@@ -90,7 +90,7 @@ export default class Contacts extends React.Component {
                         <p>Alternatively, if you wish to follow me or to contact me in other ways, you can also find me on </p>
                         <ul className="contacts-banner">
                             <ContactLinks items={contacts} side={false}/>
-                        </ul>
+                        </ul> 
                     </div>
                 </div>
                 <div className="contacts-sidebar" id="contacts-sidebar">
