@@ -90,11 +90,16 @@ p.welcome-sectors {
 }
 
 p.welcome-sectors span {
-    padding: 5px 20px;
+    padding: 5px;
+}
+
+p.welcome-sectors span:not(:first-child) {
+    padding-left: 20px;
 }
 
 p.welcome-sectors span:not(:last-child) {
     border-right: 2px solid #61d3a3;
+    padding-right: 20px;
 }
 
 
