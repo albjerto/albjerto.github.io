@@ -18,7 +18,13 @@ export default class Scene extends React.Component {
             mouse: {
                 x: 0,
                 y: 0
-            }
+            },
+            cameraStartingPos: new THREE.Vector3(-100, 0, 350),
+            cameraEndPos: new THREE.Vector3(130, 0, 80),
+            animationStartTime: null,
+            clicked: false,
+            cameraDirection: 1,
+            cameraStillMoving: false
         };
     }
 
@@ -36,6 +42,38 @@ export default class Scene extends React.Component {
 
     _setColors = (colors) => {
         this.setState( { colors: colors } );
+    }
+
+    _easeOutExpo = (x) => {
+        return 1 - Math.pow(1 - x, 4);
+    }
+
+    _bezier = (t) => {
+        return t * t * (3 - 2 * t);
+    }
+    
+    _updateCameraPosition = () => {
+
+        var start_x = this.state.cameraDirection === 1 ? this.state.cameraStartingPos.x : this.state.cameraEndPos.x;
+        var end_x = this.state.cameraDirection === 1 ? this.state.cameraEndPos.x : this.state.cameraStartingPos.x;
+        var start_z = this.state.cameraDirection === 1 ? this.state.cameraStartingPos.z : this.state.cameraEndPos.z;
+        var end_z = this.state.cameraDirection === 1 ? this.state.cameraEndPos.z : this.state.cameraStartingPos.z;
+        
+        var progress_x = Math.round((((this.camera.position.x - start_x) / (end_x - start_x)) + Number.EPSILON) * 100) / 100;
+        var progress_z = Math.round((((this.camera.position.z - start_z) / (end_z - start_z)) + Number.EPSILON) * 100) / 100;
+        if (progress_x !== 1){
+            var amount_x = this._easeOutExpo((this.clock.elapsedTime - this.state.startTime) *2.5);
+            var interpolated_x = start_x + amount_x * (end_x - start_x);
+            this.camera.position.setX(interpolated_x)
+        }
+        if (progress_z !== 1){
+            var amount_z = this._easeOutExpo((this.clock.elapsedTime - this.state.startTime) *2.5);
+            var interpolated_z = start_z + amount_z * (end_z - start_z);
+            this.camera.position.setZ(interpolated_z)
+        }
+
+        if (progress_z === 1 && progress_x === 1)
+            this.setState( { cameraStillMoving: false } );
     }
 
     createCanvas = (document, container) => {
@@ -129,7 +167,7 @@ export default class Scene extends React.Component {
         this.scene = new THREE.Scene();
 
         this.raycaster = this.raycasterSetup(6);
-        this.camera = this.cameraSetup(50, this.canvas.offsetWidth, this.canvas.offsetHeight, .1, 2000, -100, 0, 350);
+        this.camera = this.cameraSetup(50, this.canvas.offsetWidth, this.canvas.offsetHeight, .1, 2000, this.state.cameraStartingPos.x, this.state.cameraStartingPos.y, this.state.cameraStartingPos.z);
 
         var group = new THREE.Group();
         this.scene.add(group);
@@ -208,7 +246,7 @@ export default class Scene extends React.Component {
             }
             this.dotsGeometry.vertices.push(vector);
             vector.toArray(positions, i * 3);
-            this.state.colors[vector.color].toArray(colorsAttr, i * 3);
+            this.state.colors[vector.color].toArray(colorsAttr, i*3);
             sizes[i] = 4;
         }
 
@@ -263,6 +301,7 @@ export default class Scene extends React.Component {
 
         window.addEventListener("mousemove",this.mouseMovementHandler);
         window.addEventListener("resize", this.resizeHandler);
+        this.canvas.addEventListener("click", this.canvasClickHandler);
         this.mouse = new THREE.Vector2(-100,-100);
         this.clock = new THREE.Clock();
         this.start();
@@ -275,7 +314,6 @@ export default class Scene extends React.Component {
     }
 
     animate = () => {
-        var i;
         this.dotsGeometry.verticesNeedUpdate = true;
         this.segmentsGeom.verticesNeedUpdate = true;
 
@@ -286,12 +324,15 @@ export default class Scene extends React.Component {
         /*this.camera.position.x += (  (this.state.mouse.x * 50) - this.camera.position.x ) * .1;
         this.camera.position.y += ( -(this.state.mouse.y * 50) - this.camera.position.y ) * .1;
         this.camera.lookAt(this.state.origin);*/
-        
-        
-        this.wrap.rotation.x = (  (this.state.mouse.x ) - this.camera.position.x ) * .05;
-        this.wrap.rotation.y = (  (this.state.mouse.y ) - this.camera.position.y ) * .05;
-        this.segments.rotation.x = (  (this.state.mouse.x ) - this.camera.position.x ) * .05;
-        this.segments.rotation.y = (  (this.state.mouse.y ) - this.camera.position.y ) * .05;
+
+        if(this.state.cameraStillMoving)
+            this._updateCameraPosition();
+        else {
+            this.wrap.rotation.x = (  (this.state.mouse.x )) * .05;
+            this.wrap.rotation.y = (  (this.state.mouse.y )) * .05;
+            this.segments.rotation.x = (  (this.state.mouse.x )) * .05;
+            this.segments.rotation.y = (  (this.state.mouse.y )) * .05;
+        }
         
 
         this.toMove.forEach(p => {
@@ -301,7 +342,7 @@ export default class Scene extends React.Component {
         //raycasting for dot hovering
         this.raycaster.setFromCamera(this.state.mouse, this.camera);
         var intersections = this.raycaster.intersectObjects([this.wrap]);
-        var hovered = [];
+        /*var hovered = [];
         var prevHovered = [];
         if(this.clock.getElapsedTime() >= 1) {
             if (intersections.length) {
@@ -319,7 +360,8 @@ export default class Scene extends React.Component {
                 this.mouseOut(prevHovered[i]);
             }
         }
-        prevHovered = hovered.slice(0);
+        prevHovered = hovered.slice(0);*/
+        this.clock.getElapsedTime();
         this.attributeSizes.needsUpdate = true;
         this.attributePositions.needsUpdate = true;
         this.renderScene();
@@ -338,6 +380,7 @@ export default class Scene extends React.Component {
         this.stop();
         window.removeEventListener("resize", this.resizeHandler);
         window.removeEventListener("mousemove", this.mouseMovementHandler);
+        this.canvas.removeEventListener("click", this.canvasClickHandler);
     }
 
     //handlers
@@ -364,15 +407,30 @@ export default class Scene extends React.Component {
         this.renderer.setPixelRatio(window.devicePixelRatio);
     }
 
-    onDotHover = (index) => {
-        
-        /*this.attributeSizes.array[index] = 20;
-        this.dotsGeometry.vertices[index].x = this.state.mouse.x;
-        this.dotsGeometry.vertices[index].y = this.state.mouse.y;*/
+    /*onDotHover = (index) => {
+        this.attributeColors.array[index] = 0x000000
+        this.attributeColors.array[index+1] = 0x000000
+        this.attributeColors.array[index+2] = 0x000000
     }
 
     mouseOut = (index) => {
         this.attributeSizes.array[index] = 4;
+    }*/
+
+    canvasClickHandler = () => {
+        if (!this.state.cameraStillMoving){
+            this.setState( { clicked: !this.state.clicked } );
+            this.setState( { cameraStillMoving: true } );
+            this.setState( { startTime: this.clock.elapsedTime } );
+            if (this.state.clicked) {
+                this.setState( { cameraDirection : 1 } );
+                window.removeEventListener("mousemove", this.mouseMovementHandler);
+            }
+            else {
+                this.setState( { cameraDirection : -1 } );
+                window.addEventListener("mousemove", this.mouseMovementHandler);
+            }
+        }
     }
 
     render() {
