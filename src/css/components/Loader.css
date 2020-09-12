@@ -1,0 +1,18 @@
+div.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 10000;
+    background-color: #07101f;
+    width: 100%;
+    height: 100%;
+    margin-left: 0;
+    text-align: center;
+}
+
+svg#loader-logo, .loader-container img {
+    max-height: 75px;
+}

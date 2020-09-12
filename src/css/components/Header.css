@@ -61,7 +61,7 @@ h1.welcome-hero {
     font-family: 'Consolas', 'Menlo', 'Droid Sans Mono', monospace;
     font-size: 20px;
     opacity: 0;
-    animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .1s forwards;
+    /*animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .1s forwards;*/
     color: #61d3a3;
 }
 
@@ -72,20 +72,20 @@ h2.welcome-name {
     margin-bottom: 2%;
     opacity: 0;
     color: white;
-    animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .2s forwards;
+    /*animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .2s forwards;*/
 }
 
 p.welcome-info {
     font-size: 20px;
     opacity: 0;
-    animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .3s forwards;
+    /*animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .3s forwards;*/
     color: #d0efff;
 }
 
 p.welcome-sectors {
     font-size: 20px;
     opacity: 0;
-    animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .4s forwards;
+    /*animation: fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) .4s forwards;*/
     color: #d0efff;
 }
 
@@ -121,5 +121,5 @@ canvas {
     top: 0;
     right: 0;
     opacity: 0;
-    animation: fadeInRight .3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+    /*animation: fadeInRight .3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;*/
 }

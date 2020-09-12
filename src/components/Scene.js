@@ -8,7 +8,7 @@ export default class Scene extends React.Component {
         this.state = {
             origin: new THREE.Vector3(0,0,0),
             thr: 15,
-            totPoints: 2000,
+            totPoints: 2200,
             delta: .1,
             colors: [
                 new THREE.Color(0xd0efff),
@@ -248,8 +248,13 @@ export default class Scene extends React.Component {
             vector.toArray(positions, i * 3);
             this.state.colors[vector.color].toArray(colorsAttr, i*3);
             sizes[i] = 4;
+            if (i > 100) {
+                var value = Math.floor(100*(i-100)/this.state.totPoints);
+                if (value % 10 === 0) {
+                    this.props.progressCallback(value);
+                }
+            }
         }
-
         var bufferWrapGeom = new THREE.BufferGeometry();
 		this.attributePositions = new THREE.BufferAttribute(positions, 3);
 		bufferWrapGeom.setAttribute('position', this.attributePositions);
@@ -301,9 +306,11 @@ export default class Scene extends React.Component {
 
         window.addEventListener("mousemove",this.mouseMovementHandler);
         window.addEventListener("resize", this.resizeHandler);
-        this.canvas.addEventListener("click", this.canvasClickHandler);
+        document.getElementById("header-container").addEventListener("click", this.canvasClickHandler)
+        this.canvas.addEventListener("click", this.canvasClickHandler)
         this.mouse = new THREE.Vector2(-100,-100);
         this.clock = new THREE.Clock();
+        this.props.progressCallback(100);
         this.start();
     }
 
@@ -341,8 +348,8 @@ export default class Scene extends React.Component {
 
         //raycasting for dot hovering
         this.raycaster.setFromCamera(this.state.mouse, this.camera);
-        var intersections = this.raycaster.intersectObjects([this.wrap]);
-        /*var hovered = [];
+        /*var intersections = this.raycaster.intersectObjects([this.wrap]);
+        var hovered = [];
         var prevHovered = [];
         if(this.clock.getElapsedTime() >= 1) {
             if (intersections.length) {
@@ -380,6 +387,7 @@ export default class Scene extends React.Component {
         this.stop();
         window.removeEventListener("resize", this.resizeHandler);
         window.removeEventListener("mousemove", this.mouseMovementHandler);
+        document.getElementById("header-container").removeEventListener("click", this.canvasClickHandler);
         this.canvas.removeEventListener("click", this.canvasClickHandler);
     }
 

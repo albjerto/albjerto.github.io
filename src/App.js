@@ -1,5 +1,6 @@
 import React from 'react';
 import './css/App.css';
+import Loader from './components/Loader.js'
 import Navbar from './components/Navbar.js';
 import Header from './components/Header.js';
 import About from './components/About.js';
@@ -10,7 +11,12 @@ export default class App extends React.Component {
     constructor(prop) {
         super(prop);
 
-        this.state = { currentScroll: 0, currentSection : 'home' };
+        this.state = {
+            currentScroll: 0,
+            currentSection : 'home', 
+            loaded: false,
+            progress: 0
+        };
     }
 
     navItems = [
@@ -109,8 +115,35 @@ export default class App extends React.Component {
         window.addEventListener('scroll', this.handleScroll);
     }
 
+    loadingDoneCallback = () => {
+        this.setState({ loaded: true });
+    }
+
+    updateProgressCallback = (amount) => {
+        this.setState({progress: amount}, () => {
+            console.log("app current progress " + this.state.progress);
+        })
+    }
+
     componentWillUnmount = () => {
         window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    componentDidUpdate = () => {
+        if(this.state.loaded){
+            document.body.style.overflowY = "visible";
+            this.slideInHeaderElements();
+        }
+    }
+
+    slideInHeaderElements = () => {
+        document.getElementsByClassName("scene")[0].style.animation = "fadeInRight .3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards";
+        var welcome_children = document.getElementById("welcome").childNodes;
+        var delay;
+        for (var i = 0; i < welcome_children.length; i++) {
+            delay = i+1;
+            welcome_children[i].style.animation = "fadeInLeft .3s cubic-bezier(0.645, 0.045, 0.355, 1) ."+delay+"s forwards";
+        }
     }
 
     handleScroll = evt => {
@@ -123,7 +156,7 @@ export default class App extends React.Component {
         var elements = Array.from(document.getElementsByClassName('to-slide'));
 
         elements.forEach(e => {
-            if(this.isInViewPort(e)) {
+            if(this._isInViewPort(e)) {
                 e.classList.remove("to-slide");
                 //the last token indicates the direction
                 var dir = e.classList[e.classList.length-1];
@@ -133,7 +166,7 @@ export default class App extends React.Component {
         })
     }
 
-    isInViewPort = (element) => {
+    _isInViewPort = (element) => {
         var bounding = element.getBoundingClientRect();
 
         if (((window.innerHeight || document.documentElement.clientHeight) - bounding.top)/100 >= 2) {
@@ -181,14 +214,26 @@ export default class App extends React.Component {
     }
 
     render() {
-        return (
-            <div className="page-container">
-                <Navbar items={this.navItems} currentSection={this.state.currentSection}/>
-                <Header/>
-                <About /> 
-                <Projects list={this.projects}/>
-                <Contacts contacts={this.socialMedia}/>
-            </div>
+        var header = (
+            <Header progressCallback={this.updateProgressCallback}/>
         );
+        if (!this.state.loaded) {
+            return (
+                <div className="page-container">
+                    <Loader progress={this.state.progress} loadingDoneCallback={this.loadingDoneCallback}/>
+                    {header}
+                </div>
+            );
+        } else {
+            return (
+                <div className="page-container">
+                    <Navbar items={this.navItems} currentSection={this.state.currentSection}/>
+                    {header}
+                    <About /> 
+                    <Projects list={this.projects}/>
+                    <Contacts contacts={this.socialMedia}/>
+                </div>
+            );
+        }
     }
 }

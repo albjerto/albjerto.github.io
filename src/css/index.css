@@ -1,6 +1,5 @@
 body, html {
     width: 100%;
-
     padding: 0;
     margin: 0;
     font-family: 'Spartan', 'Roboto',  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
@@ -8,10 +7,14 @@ body, html {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
     font-size: 20px;
     background-color: #0a192f;
     color: #d0efff;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 /* hoverable title letters */
@@ -137,6 +140,15 @@ code {
 
 .fade-out-up {
     animation: fadeOutUp .5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+@keyframes fadeOutUpBig {
+    from { opacity:1; transform: none;}
+    to {opacity: 0; transform: translate3d(0, -100px, 0);}
+}
+
+.fade-out-up-big {
+    animation: fadeOutUpBig .5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
 }
   
 @keyframes fadeInUp {
