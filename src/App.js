@@ -120,9 +120,7 @@ export default class App extends React.Component {
     }
 
     updateProgressCallback = (amount) => {
-        this.setState({progress: amount}, () => {
-            console.log("app current progress " + this.state.progress);
-        })
+        this.setState({progress: amount});
     }
 
     componentWillUnmount = () => {

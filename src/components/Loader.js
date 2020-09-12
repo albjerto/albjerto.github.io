@@ -60,7 +60,6 @@ export default function Loader(props) {
                 setAmount(amount + 2);
             }
         }, 50);
-        console.log("loader received " +props.progress);
         if (props.progress === 100 && amount === 100) {
             document.getElementById("loader-container").classList.add("fade-out-up-big");
             setTimeout(
