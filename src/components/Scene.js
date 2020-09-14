@@ -94,7 +94,7 @@ export default class Scene extends React.Component {
             alpha: true
         });
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(width, height);
+        renderer.setSize(width, height, false);
         
         return renderer;
     }
@@ -232,7 +232,6 @@ export default class Scene extends React.Component {
             //increase sphere radius. scaleX is there in case
             //i wish to add hover effects
             vector.multiplyScalar(100 + (Math.random() - 0.5) * 2);
-            vector.scaleX = 5;
 
             if(Math.random() > .5) {
                 var dir = Math.random() > .5 ? 1 : -1;
@@ -290,8 +289,7 @@ export default class Scene extends React.Component {
         for(i = 0; i < this.dotsGeometry.vertices.length - 1; i++) {
             var v = this.dotsGeometry.vertices[i];
             for (var j = 0; j < this.dotsGeometry.vertices.length - 1; j++) {
-                if (i !== j && v.distanceTo(this.dotsGeometry.vertices[j]) < 13) {   
-                //if (i !== j && v.distanceTo(this.dotsGeometry.vertices[j])) {
+                if (i !== j && v.distanceTo(this.dotsGeometry.vertices[j]) < 13) {
                     this.segmentsGeom.vertices.push(v);
                     this.segmentsGeom.vertices.push(this.dotsGeometry.vertices[j]);
                     this.segmentsGeom.colors.push(this.state.colors[v.color]);
@@ -311,6 +309,8 @@ export default class Scene extends React.Component {
         this.mouse = new THREE.Vector2(-100,-100);
         this.clock = new THREE.Clock();
         this.props.progressCallback(100);
+        this.currHovered = [];
+        this.prevHovered = [];
         this.start();
     }
 
@@ -334,7 +334,7 @@ export default class Scene extends React.Component {
 
         if(this.state.cameraStillMoving)
             this._updateCameraPosition();
-        else {
+        else if(!this.state.clicked){
             this.wrap.rotation.x = (  (this.state.mouse.x )) * .05;
             this.wrap.rotation.y = (  (this.state.mouse.y )) * .05;
             this.segments.rotation.x = (  (this.state.mouse.x )) * .05;
@@ -348,26 +348,30 @@ export default class Scene extends React.Component {
 
         //raycasting for dot hovering
         this.raycaster.setFromCamera(this.state.mouse, this.camera);
-        /*var intersections = this.raycaster.intersectObjects([this.wrap]);
-        var hovered = [];
-        var prevHovered = [];
+        var intersections = this.raycaster.intersectObjects([this.wrap], true);
+
+        this.currHovered.forEach(i => {
+            if(!intersections.some(x => x.index === i)) {
+                this.currHovered.splice(this.currHovered.indexOf(i), 1);
+                this.prevHovered.push(i.index);
+            }
+        });
+
         if(this.clock.getElapsedTime() >= 1) {
             if (intersections.length) {
-                for(i = 0; i < intersections.length; i++) {
+                for(var i = 0; i < intersections.length; i++) {
                     var index = intersections[i].index;
-                    hovered.push(index);
-                    if (prevHovered.indexOf(index) === -1) {
-                        this.onDotHover(index);
-                    }
+                    if(this.currHovered.indexOf(index) === -1 && this.prevHovered.indexOf(index) === -1) {
+                        var values = [[0, 1, 0.584], [1, 0.698, 0.16], [ 1, 0.45, 0.278]];
+                        var color = Math.floor(Math.random() * values.length);
+                        this.currHovered.push({index: index, color: values[color]});
+                    };
                  }
             }
         }
-        for(i = 0; i < prevHovered.length; i++){
-            if(hovered.indexOf(prevHovered[i]) === -1){
-                this.mouseOut(prevHovered[i]);
-            }
-        }
-        prevHovered = hovered.slice(0);*/
+
+        this.onDotHover();
+        this.mouseOut();
         this.clock.getElapsedTime();
         this.attributeSizes.needsUpdate = true;
         this.attributePositions.needsUpdate = true;
@@ -411,19 +415,64 @@ export default class Scene extends React.Component {
         this.canvas.width = this.canvas.container.offsetWidth;
         this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
-        this.renderer.setSize(width, height);
+        this.renderer.setSize(width, height, false);
         this.renderer.setPixelRatio(window.devicePixelRatio);
     }
 
-    /*onDotHover = (index) => {
-        this.attributeColors.array[index] = 0x000000
-        this.attributeColors.array[index+1] = 0x000000
-        this.attributeColors.array[index+2] = 0x000000
+    onDotHover = () => {            
+        /*
+            0, 1, 0.584 -> #00ff95
+            1, 0.698, 0.16 -> #ffb229
+            1, 0.45, 0.278 -> #ff7347
+            0.278, 0.819, 1 -> #47d1ff
+        */
+        this.currHovered.forEach(x => {
+            let r_val = x.color[0];
+            let g_val = x.color[1];
+            let b_val = x.color[2];    
+            //r
+            //var distance = this.attributeColors.array[x*3] - r_val;
+            this.attributeColors.array[x.index*3] = r_val;
+            
+            //g
+            //distance = this.attributeColors.array[(x*3) + 1] - g_val;
+            this.attributeColors.array[(x.index*3) + 1] = g_val;
+
+            //b
+            //distance = this.attributeColors.array[(x*3) + 2] - b_val;
+            this.attributeColors.array[(x.index*3) + 2] = b_val;
+            this.attributeSizes.array[x.index] = 8;
+        })
+        this.attributeColors.needsUpdate = true;
+        
     }
 
-    mouseOut = (index) => {
-        this.attributeSizes.array[index] = 4;
-    }*/
+    mouseOut = () => {
+        var step = 0.0035;
+
+        this.prevHovered.forEach(x => {
+            var done = 0;
+            var original_color = this.state.colors[this.dotsGeometry.vertices[x].color].toArray();
+            this.attributeSizes.array[x] -= .05;
+            if(this.attributeSizes.array[x] <= 4) {
+                this.attributeSizes.array[x] = 4;
+                done++;
+            }
+            for (var i = 0; i < 3; i++) {
+
+                var sign = Math.sign(original_color[i] - this.attributeColors.array[(x * 3) + i]);
+                this.attributeColors.array[(x * 3) + i] += sign * step;
+                if ((sign >= 0 && this.attributeColors.array[(x * 3) + i] >= original_color[i])
+                || (sign <= 0 && this.attributeColors.array[(x * 3) + i] <= original_color[i])) {
+                    this.attributeColors.array[(x * 3) + i] = original_color[i]
+                    done++;
+                }
+            }
+            if (done === 4) {
+                this.prevHovered.splice(this.prevHovered.indexOf(x), 1);
+            }
+        })
+    }
 
     canvasClickHandler = () => {
         if (!this.state.cameraStillMoving){
@@ -432,11 +481,9 @@ export default class Scene extends React.Component {
             this.setState( { startTime: this.clock.elapsedTime } );
             if (this.state.clicked) {
                 this.setState( { cameraDirection : 1 } );
-                window.removeEventListener("mousemove", this.mouseMovementHandler);
             }
             else {
                 this.setState( { cameraDirection : -1 } );
-                window.addEventListener("mousemove", this.mouseMovementHandler);
             }
         }
     }
