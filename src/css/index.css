@@ -281,3 +281,25 @@ a.next-page:hover span:last-child {
     margin-top: 11px;
     width: 40px;
 }*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+  
+
+::-webkit-scrollbar-track {
+    opacity: 0;
+}
+
+::-webkit-scrollbar-track-piece:start {
+    background: #61d3a3;
+}
+  
+
+::-webkit-scrollbar-thumb {
+    background: #61d3a3;
+    border-radius: 10px;
+    transition: all .35s ease-in-out;
+    height:10px;
+}
