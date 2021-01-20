@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.644a18bc.chunk.css",
-    "main.js": "/static/js/main.7f9434fa.chunk.js",
-    "main.js.map": "/static/js/main.7f9434fa.chunk.js.map",
+    "main.js": "/static/js/main.1c2eaef1.chunk.js",
+    "main.js.map": "/static/js/main.1c2eaef1.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.27b64fcf.js",
     "runtime-main.js.map": "/static/js/runtime-main.27b64fcf.js.map",
     "static/js/2.56812371.chunk.js": "/static/js/2.56812371.chunk.js",
     "static/js/2.56812371.chunk.js.map": "/static/js/2.56812371.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.674e400503c2a350f254906996a01307.js": "/precache-manifest.674e400503c2a350f254906996a01307.js",
+    "precache-manifest.1cddeb2b3e226122904a4d2dc3ea00e3.js": "/precache-manifest.1cddeb2b3e226122904a4d2dc3ea00e3.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.644a18bc.chunk.css.map": "/static/css/main.644a18bc.chunk.css.map",
     "static/js/2.56812371.chunk.js.LICENSE.txt": "/static/js/2.56812371.chunk.js.LICENSE.txt",
@@ -21,12 +21,14 @@
     "static/media/koine_1.JPG": "/static/media/koine_1.d1e4cc3d.JPG",
     "static/media/koine_2.JPG": "/static/media/koine_2.7369de12.JPG",
     "static/media/koine_3.JPG": "/static/media/koine_3.2845525a.JPG",
-    "static/media/mitm_1.JPG": "/static/media/mitm_1.a24fd012.JPG"
+    "static/media/mitm_1.JPG": "/static/media/mitm_1.a24fd012.JPG",
+    "static/media/moon-landing.gif": "/static/media/moon-landing.240f733d.gif",
+    "static/media/moon-landing.jpg": "/static/media/moon-landing.ad1f1788.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.27b64fcf.js",
     "static/js/2.56812371.chunk.js",
     "static/css/main.644a18bc.chunk.css",
-    "static/js/main.7f9434fa.chunk.js"
+    "static/js/main.1c2eaef1.chunk.js"
   ]
 }

@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "808baca888623597ffc1497ac0e88333",
+    "revision": "c9f1c64b9a07bd6308b5c11c1b1d8f63",
     "url": "/index.html"
   },
   {
-    "revision": "fbdb3b7453e8d9c18d76",
+    "revision": "a9c747bf5685ff5e20b4",
     "url": "/static/css/main.644a18bc.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/2.56812371.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fbdb3b7453e8d9c18d76",
-    "url": "/static/js/main.7f9434fa.chunk.js"
+    "revision": "a9c747bf5685ff5e20b4",
+    "url": "/static/js/main.1c2eaef1.chunk.js"
   },
   {
     "revision": "5fce37acc170e4c6fca6",
@@ -62,5 +62,13 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "a24fd0128c031d5cb6fa9bdee5c9e465",
     "url": "/static/media/mitm_1.a24fd012.JPG"
+  },
+  {
+    "revision": "240f733d36894924ebae2128af3adf5e",
+    "url": "/static/media/moon-landing.240f733d.gif"
+  },
+  {
+    "revision": "ad1f17884dd45a46768335b454474246",
+    "url": "/static/media/moon-landing.ad1f1788.jpg"
   }
 ]);
