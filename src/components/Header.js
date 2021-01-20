@@ -1,6 +1,6 @@
 import React from 'react';
 import Scene from './Scene.js';
-import '../css/components/Header.css'
+import '../css/components/Header.css';
 
 export default class Header extends React.Component {
     constructor(props) {

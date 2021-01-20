@@ -1,15 +1,49 @@
 import React from 'react';
 import '../css/components/Projects.css';
 
+class GifThumbnails extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.static_img = this.props.img[0];
+        this.animated_img = this.props.gif;
+        this.ref = React.createRef();
+    }
+
+    animateGif = () => {
+        this.ref.current.getElementsByClassName("static")[0].classList.add("hidden")
+        this.ref.current.getElementsByClassName("dynamic")[0].classList.remove("hidden")
+    }
+
+    backToStatic = () => {
+        this.ref.current.getElementsByClassName("static")[0].classList.remove("hidden")
+        this.ref.current.getElementsByClassName("dynamic")[0].classList.add("hidden")
+    }
+
+    render() {
+
+        const img = this.static_img;
+        let classes = "project-thumbnail gif-to-animate";
+        return (
+            <div className={classes} onMouseEnter={this.animateGif} onMouseLeave={this.backToStatic} ref={this.ref}>
+                <img className="static" src={this.static_img.key} alt="Project preview"></img>
+                <img className="dynamic hidden" src={this.animated_img} alt="Project preview"></img>
+            </div>
+        );
+    }
+}
+
 class Thumbnails extends React.Component {
     constructor(props) {
         super(props);
 
         var len = this.props.imgs.length;
+        var optClasses = this.props.optClasses;
 
         this.state = {
             curr: 0,
-            len: len
+            len: len,
+            optClasses: optClasses
         }
     }
  
@@ -64,9 +98,10 @@ class Thumbnails extends React.Component {
     render() {
 
         const imgs = this.props.imgs;
+        let className = "project-thumbnail";
         if(this.state.len > 1) {
             return (
-                <div className="project-thumbnail">
+                <div className={className}>
                     {imgs}
                     <div className="next-button" onClick={this.onButtonClick}>
                         <span className="next"></span>
@@ -80,7 +115,7 @@ class Thumbnails extends React.Component {
             );
         } else {
             return (
-                <div className="project-thumbnail">
+                <div className={className}>
                     {imgs}
                 </div>
             );
@@ -101,7 +136,9 @@ const Projects = (props) => {
         return (
             <div className={"project to-slide " + ((i++ % 2 === 0) ? "left" : "right")} key={p.title}>
                 <div className="project-info">
-                    <Thumbnails imgs={imgs}/>
+                    {
+                        p.hasOwnProperty("gif") ?   <GifThumbnails img={imgs} gif={p.gif}/> : <Thumbnails imgs={imgs}/>
+                    }
                     <div className="project-text-wrapper">
                     <h4 className="project-title">{p.title}</h4>
                         <p className="project-description">{p.desc}</p>

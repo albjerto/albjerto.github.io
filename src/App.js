@@ -79,6 +79,16 @@ export default class App extends React.Component {
 
     projects = [ 
         {
+            title: 'Moon Landing',
+            image: [require('./media/moon-landing.jpg')],
+            gif: require('./media/moon-landing.gif'),
+            desc: 'Implementation of some Deep Reinforcement Learning algorithms to solve the Lunar Lander environment from OpenAI gym',
+            more: 'https://github.com/albjerto/moon-landing',
+            link_title: this.project_icons['github'].link_title,
+            icon: this.project_icons['github'].icon,
+            tech: ['python', 'pytorch', 'openai gym']
+        },
+        {
             title: 'Store shelf recognition',
             image: [require('./media/box_1.jpg')],
             desc: 'University project for the development of a computer vision algorithm that recognizes cereal boxes on store shelves, with the intent of creating a device for blind people',
