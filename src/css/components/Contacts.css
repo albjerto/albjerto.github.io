@@ -104,10 +104,12 @@ svg {
 }
 
 .contacts-sidebar svg {
+    width: 21px;
     height: 21px;
 }
 
 .contacts-banner svg {
+    width: 30px;
     height: 30px;
 }
 
