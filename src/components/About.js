@@ -11,7 +11,7 @@ const About = () => {
                     <p className="about-info">I'm a Software Engineer based in Forlì, Italy.</p>
                     <p className="about-info">I'm currently attending the Master Degree in Computer Engineering @ University of Bologna.</p>
                     <p className="about-info about-interests">I love bringing things to life, creating smooth and elegant digital experiences.</p>
-                    <p className="about-info about-interests">I'm interested in all kinds of technology, but my major focuses are Artificial Intelligence, Machine Learning, CyberSecurity and Web Development.</p>
+                    <p className="about-info about-interests">I'm interested in all kinds of technology, but my major focuses are Artificial Intelligence, Computer Vision and Web Development.</p>
                     <p className="about-additional about-interests">I also have good knowledge of photographic post-processing and editing software.</p>
                     <p className="about-additional about-interests">In my free time, I enjoy learning new things, taking landscape photographs or hiking.</p>
                 </div>

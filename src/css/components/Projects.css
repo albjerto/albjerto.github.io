@@ -181,6 +181,7 @@ div.next-button span:last-child, div.prev-button span:first-child {
         filter: brightness(100%);
         opacity: 1;
         transform: scale3d(1.03, 1.03, 1.03);
+        box-shadow: 5px 5px 15px #000f23;
     }
 
     div.project-thumbnail:hover > div, div.next-button:hover, div.prev-button:hover {
