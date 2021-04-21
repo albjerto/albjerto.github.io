@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import React from 'react';
 
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
 export default class Scene extends React.Component {
     constructor(props) {
         super(props);
@@ -8,7 +10,7 @@ export default class Scene extends React.Component {
         this.state = {
             origin: new THREE.Vector3(0,0,0),
             thr: 15,
-            totPoints: 2200,
+            totPoints: 2500,
             delta: .1,
             colors: [
                 new THREE.Color(0xd0efff),
@@ -168,6 +170,7 @@ export default class Scene extends React.Component {
 
         this.raycaster = this.raycasterSetup(6);
         this.camera = this.cameraSetup(50, this.canvas.offsetWidth, this.canvas.offsetHeight, .1, 2000, this.state.cameraStartingPos.x, this.state.cameraStartingPos.y, this.state.cameraStartingPos.z);
+        this.cameraControls = new OrbitControls(this.camera, this.renderer.domElement)
 
         var group = new THREE.Group();
         this.scene.add(group);
@@ -183,15 +186,39 @@ export default class Scene extends React.Component {
         var positions = new Float32Array(this.state.totPoints * 3);
         var sizes = new Float32Array(this.state.totPoints);
         var colorsAttr = new Float32Array(this.state.totPoints * 3);
-
-        //spiral constants
-        //const a = 1, b = .5;
         
         for (var i = 0; i < this.state.totPoints; i++) {
             var vector = new THREE.Vector3();
 
             //calculating color and spherical coordinates
             vector.color = Math.floor(Math.random() * this.state.colors.length);
+            
+            //for double helix
+            /*const a = .7, b = 2;
+            vector.theta = Math.random() * Math.PI * 2;
+            vector.phi = (1 - Math.sqrt(Math.random())) * Math.PI / 2 * (Math.random() > .5 ? 1 : -1);
+
+            var symmetry = Math.random() > .5? 1 : -1;
+
+            var x = Math.random()
+            
+            vector.z = x * a * Math.sin(vector.theta) * symmetry
+            vector.x = x * a * Math.cos(vector.theta) * symmetry
+            vector.y = b * vector.theta - 4*/
+
+            //for mobius
+            /*vector.theta = Math.random() * Math.PI * 2
+            vector.phi = (1 - Math.sqrt(Math.random())) * Math.PI / 2 * (Math.random() > .5 ? 1 : -1);
+
+            //v rescaled to be in -1, 1 range
+            vector.u = (Math.random() *  2) - 1
+            
+            vector.x = (1.25 + (vector.u / 2) * Math.cos(vector.theta / 2)) * Math.cos(vector.theta)
+            vector.y = (1.25 + (vector.u / 2) * Math.cos(vector.theta / 2)) * Math.sin(vector.theta)
+            vector.z = (vector.u / 2) * Math.sin(vector.theta / 2)*/
+            
+            
+            // for sphere
             vector.theta = Math.random() * Math.PI * 2;
             vector.phi = (1 - Math.sqrt(Math.random())) * Math.PI / 2 * (Math.random() > .5 ? 1 : -1);
 
@@ -203,6 +230,8 @@ export default class Scene extends React.Component {
             //for spirals
             //https://www.wolframalpha.com/input/?i=logarithmic+spiral+a+%3D+1+b+%3D+0.5
             /*var symmetry = Math.floor(Math.random() * 4);
+            //spiral constants
+            const a = 1, b = .5;
             var x, y;
             if(symmetry === 0){  
                 x = a * Math.exp(b * vector.theta) * Math.cos(vector.theta);
@@ -305,7 +334,7 @@ export default class Scene extends React.Component {
         window.addEventListener("mousemove",this.mouseMovementHandler);
         window.addEventListener("resize", this.resizeHandler);
         document.getElementById("header-container").addEventListener("click", this.canvasClickHandler)
-        this.canvas.addEventListener("click", this.canvasClickHandler)
+        //this.canvas.addEventListener("click", this.canvasClickHandler)
         this.mouse = new THREE.Vector2(-100,-100);
         this.clock = new THREE.Clock();
         this.props.progressCallback(100);
@@ -329,8 +358,8 @@ export default class Scene extends React.Component {
         
         
         /*this.camera.position.x += (  (this.state.mouse.x * 50) - this.camera.position.x ) * .1;
-        this.camera.position.y += ( -(this.state.mouse.y * 50) - this.camera.position.y ) * .1;
-        this.camera.lookAt(this.state.origin);*/
+        this.camera.position.y += ( -(this.state.mouse.y * 50) - this.camera.position.y ) * .1;*/
+        this.camera.lookAt(this.state.origin);
 
         if(this.state.cameraStillMoving)
             this._updateCameraPosition();

@@ -30,7 +30,7 @@ export default class Header extends React.Component {
                         <h2 id="welcome-name" className="welcome-name">
                             <span className="letter">I</span><span className="letter">'</span><span className="letter">m</span><span className="space"> </span><span className="letter">A</span><span className="letter">l</span><span className="letter">b</span><span className="letter">e</span><span className="letter">r</span><span className="letter">t</span><span className="letter">o</span><span className="space"> </span><span className="letter">J</span><span className="letter">e</span><span className="letter">s</span><span className="letter">u</span><span className="letter">.</span>
                         </h2>
-                        <p id="welcome-info" className="welcome-info">Computer Engineer and Web Developer. I build things.</p>
+                        <p id="welcome-info" className="welcome-info">Computer Engineer and Web Developer.</p>
                     </div>
                 </div>
                 <Scene progressCallback={this.progressCallback}/>
