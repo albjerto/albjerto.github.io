@@ -358,8 +358,8 @@ export default class Scene extends React.Component {
         
         
         /*this.camera.position.x += (  (this.state.mouse.x * 50) - this.camera.position.x ) * .1;
-        this.camera.position.y += ( -(this.state.mouse.y * 50) - this.camera.position.y ) * .1;*/
-        this.camera.lookAt(this.state.origin);
+        this.camera.position.y += ( -(this.state.mouse.y * 50) - this.camera.position.y ) * .1;
+        this.camera.lookAt(this.state.origin);*/
 
         if(this.state.cameraStillMoving)
             this._updateCameraPosition();
