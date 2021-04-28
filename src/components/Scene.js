@@ -170,7 +170,6 @@ export default class Scene extends React.Component {
 
         this.raycaster = this.raycasterSetup(6);
         this.camera = this.cameraSetup(50, this.canvas.offsetWidth, this.canvas.offsetHeight, .1, 2000, this.state.cameraStartingPos.x, this.state.cameraStartingPos.y, this.state.cameraStartingPos.z);
-        this.cameraControls = new OrbitControls(this.camera, this.renderer.domElement)
 
         var group = new THREE.Group();
         this.scene.add(group);
