@@ -333,7 +333,7 @@ export default class Scene extends React.Component {
         window.addEventListener("mousemove",this.mouseMovementHandler);
         window.addEventListener("resize", this.resizeHandler);
         document.getElementById("header-container").addEventListener("click", this.canvasClickHandler)
-        //this.canvas.addEventListener("click", this.canvasClickHandler)
+        this.canvas.addEventListener("click", this.canvasClickHandler)
         this.mouse = new THREE.Vector2(-100,-100);
         this.clock = new THREE.Clock();
         this.props.progressCallback(100);

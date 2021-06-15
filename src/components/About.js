@@ -9,7 +9,7 @@ const About = () => {
                 <div className="about-text">
                     <h3>About me</h3>
                     <p className="about-info">I'm a Software Engineer based in Forlì, Italy.</p>
-                    <p className="about-info">I'm currently attending the Master Degree in Computer Engineering @ University of Bologna.</p>
+                    <p className="about-info">I graduated in Computer Engineering at the University of Bologna.</p>
                     <p className="about-info about-interests">I love bringing things to life, creating smooth and elegant digital experiences.</p>
                     <p className="about-info about-interests">I'm interested in all kinds of technology, but my major focuses are Artificial Intelligence, Computer Vision and Web Development.</p>
                     <p className="about-additional about-interests">I also have good knowledge of photographic post-processing and editing software.</p>
