@@ -12,7 +12,7 @@
     "react": "^16.13.1",
     "react-awesome-slider": "^4.1.0",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.0",
+    "react-scripts": "5.0.1",
     "scroll-to-element": "^2.0.3",
     "three": "^0.115.0",
     "yarn": "^1.22.4"
