@@ -116,7 +116,7 @@ code {
     
 @keyframes fadeInDown {
     from { opacity: 0; display: hidden; transform: translate3d(0, -20px, 0); }
-    to { opacity: 1; transform: none; display: flex;}
+    to { opacity: 1; transform: none; display: initial;}
 }
 
 .fade-in-down {
