@@ -14,12 +14,12 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.0",
     "scroll-to-element": "^2.0.3",
-    "three": "^0.125.0",
+    "three": "^0.124.0",
     "yarn": "^1.22.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
